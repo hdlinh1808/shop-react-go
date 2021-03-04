@@ -1,0 +1,55 @@
+:root {
+    --width: 255px;
+}
+.pushable.custom {
+    width: 100%;
+    min-height: 500px;
+}
+
+.pushable.custom > .ui.sidebar {
+    width: var(--width) !important;
+}
+
+.pushable.custom > .ui.visible.sidebar {
+    margin-left: 0px !important;
+}
+
+.ui.visible.left.sidebar~.pusher-computer {
+    margin-left: calc(var(--width) + 10px);
+}
+
+.pushable.custom > .pusher-computer {
+    transition: margin-left .5s ease;
+}
+
+.app-body {
+    margin-top: 30px
+}
+
+.ui.grid.content {
+    margin: 0px;
+}
+
+/*sidebar*/
+.ui.inverted.menu {
+    background-color: #fff;
+}
+
+/* item */
+.ui.labeled.icon.menu .item {
+    text-align: left;
+    color: #000;
+    transition: background-color .15s ease;
+}
+
+.ui.labeled.icon.menu .item:hover {
+    background-color: #000;
+}
+
+.ui.labeled.icon.menu .item>.icon:not(.dropdown){
+    display: inline-block;
+    font-size: 15px !important;
+    width: 25px;
+    text-align: left;
+}
+
