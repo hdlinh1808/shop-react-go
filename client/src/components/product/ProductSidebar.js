@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Menu, Icon, Button, Sidebar } from 'semantic-ui-react'
 
-class AppSidebar extends Component {
+class ProductSidebar extends Component {
 
     constructor(props) {
         super(props)
@@ -9,6 +9,7 @@ class AppSidebar extends Component {
 
 
     setVisible(visible) {
+        console.log("onHideCall");
         this.props.setVisibleSidebar(visible)
     }
 
@@ -23,7 +24,8 @@ class AppSidebar extends Component {
                 inverted
                 vertical
                 visible={this.props.visible}
-                onHide={()=> this.setVisible(false)}>
+                // onHide={()=> this.setVisible(false)}
+                >
                 <Menu.Item as='a'><Icon name='home' />Home</Menu.Item>
                 <Menu.Item as='a'><Icon name='gamepad' />Games</Menu.Item>
                 <Menu.Item as='a'><Icon name='camera' />Channels</Menu.Item>
@@ -32,4 +34,4 @@ class AppSidebar extends Component {
     }
 }
 
-export default AppSidebar
+export default ProductSidebar

@@ -1,6 +1,14 @@
 :root {
     --width: 255px;
 }
+
+
+.app-body {
+    min-height: calc(100vh - 330px)
+}
+
+/*sidebar*/
+
 .pushable.custom {
     width: 100%;
     min-height: 500px;
@@ -22,20 +30,11 @@
     transition: margin-left .5s ease;
 }
 
-.app-body {
-    margin-top: 30px
-}
-
-.ui.grid.content {
-    margin: 0px;
-}
-
-/*sidebar*/
 .ui.inverted.menu {
     background-color: #fff;
 }
 
-/* item */
+/*sidebar item */
 .ui.labeled.icon.menu .item {
     text-align: left;
     color: #000;
@@ -53,3 +52,85 @@
     text-align: left;
 }
 
+/*main contain */
+.ui.grid.content {
+    margin: 0px;
+}
+
+/* product item */
+
+.ui.grid>.column.item-wrapper {
+    padding: 10px;
+}
+
+.ui.grid>.column.item-wrapper > .item {
+    border: 1px solid rgba(34,36,38,.15);
+    border-radius: 3px;
+    padding: 2px;
+    /* min-height: 250px; */
+    transition: box-shadow .3s ease-out, transform .15s ease-in-out;
+    position: relative;
+}
+
+.ui.grid>.column.item-wrapper > .item:hover {
+    box-shadow: 0px 0px 8px 2px rgba(34,36,38,.15);
+    cursor: pointer;
+    transform: translateY(-5px);
+}
+
+.ui.grid>.column.item-wrapper > .item > .image-wrapper {
+    overflow: hidden;
+    position: relative;
+    padding-top: 100%;
+}
+
+.ui.grid>.column.item-wrapper > .item > .image-wrapper > .image-horizontal {
+    position: absolute;
+    width: 100%;
+    /* height: 100%; */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.ui.grid>.column.item-wrapper > .item > .image-wrapper > .image-vertical {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ui.grid>.column.item-wrapper > .item > .image-wrapper > .image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.ui.grid>.column.item-wrapper > .item > .item-footer {
+    padding: 5px;
+    border-top: 1px solid rgba(34,36,38,.15);
+    margin-top: 2px;
+}
+
+.ui.grid>.column.item-wrapper > .item > .item-footer > .product-info {   
+    padding-top: 7px;
+}
+
+.ui.grid>.column.item-wrapper > .item > .item-footer > .product-info > .sale {
+    font-size: 10px;
+}
+
+.ui.grid>.column.item-wrapper > .item > .item-footer > .price-wrapper {
+    margin-top:7px;
+}
+
+.ui.grid>.column.item-wrapper > .item > .item-footer > .price-wrapper > .ui.tag > .price {
+    padding-left: 12px;
+    padding-right: 8px;
+}
+
+.ui.grid>.column.item-wrapper > .item > .item-footer > .price-wrapper > .ui.tag > .price.origin {
+    text-decoration: line-through;
+}
