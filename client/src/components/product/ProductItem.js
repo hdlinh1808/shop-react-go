@@ -4,39 +4,12 @@ import { GridColumn, Label } from 'semantic-ui-react'
 import StyledContentLoader from 'styled-content-loader';
 import ContentLoader from 'react-content-loader';
 
-const VERTICAL_IMAGE_CLASS = "image-vertical";
-const HORIZONTAL_IMAGE_CLASS = "image-horizontal";
-const SQUARE_IMAGE_CLASS = "image";
+import "../../styles/img.css"
+import DirectionImage from '../DirectionImage';
 
 export class ProductItem extends Component {
     constructor(props) {
         super(props)
-
-        this.state = {
-            style: SQUARE_IMAGE_CLASS,
-            loaded: false,
-        }
-    }
-
-    onImgLoad(img) {
-        let naturalHeight = img.naturalHeight;
-        let naturalWidth = img.naturalWidth;
-        let style = "";
-        if (naturalWidth > naturalHeight) {
-            style = HORIZONTAL_IMAGE_CLASS;
-        } else if (naturalHeight > naturalWidth) {
-            style = VERTICAL_IMAGE_CLASS;
-        } else {
-            style = SQUARE_IMAGE_CLASS;
-        }
-
-        this.setState({
-            style: style,
-        }, () => {
-            this.setState({
-                loaded: true,
-            })
-        })
     }
 
     render() {
@@ -44,11 +17,7 @@ export class ProductItem extends Component {
         return (
             <GridColumn as={Link} className="item-wrapper" to={`/product/${item.id}`}>
                 <div className="item">
-                    <div className="image-wrapper">
-                        <img className={this.state.style} src={item.image} onLoad={(e) => this.onImgLoad(e.target)}
-                            style={{ display: !this.state.loaded ? "none" : "inherit" }}
-                        />
-                    </div>
+                    <DirectionImage imgSrc={item.image}></DirectionImage>
 
                     <div className="item-footer">
                         <div className="product-info">
