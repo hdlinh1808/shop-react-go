@@ -1,0 +1,9 @@
+.item-container {
+    margin-top: 20px;
+}
+
+.item-container .main-image-wrapper {
+    overflow: hidden;
+    position: relative;
+    padding-top: 100%;
+}

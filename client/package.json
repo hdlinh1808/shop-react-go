@@ -8,11 +8,14 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "react": "^17.0.1",
+    "react-content-loader": "^6.0.2",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.1",
+    "styled-components": "^5.2.1",
+    "styled-content-loader": "^1.2.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

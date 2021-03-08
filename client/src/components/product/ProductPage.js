@@ -15,8 +15,6 @@ export class ProductPage extends Component {
         this.state = {
             visibleSidebar: visible,
         }
-
-        console.log("init---------------")
     }
 
     componentDidMount() {

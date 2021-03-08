@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import React, { Component } from 'react'
 import { GridColumn, Label } from 'semantic-ui-react'
+import StyledContentLoader from 'styled-content-loader';
+import ContentLoader from 'react-content-loader';
 
 const VERTICAL_IMAGE_CLASS = "image-vertical";
 const HORIZONTAL_IMAGE_CLASS = "image-horizontal";
@@ -15,7 +17,6 @@ export class ProductItem extends Component {
             loaded: false,
         }
     }
-
 
     onImgLoad(img) {
         let naturalHeight = img.naturalHeight;
@@ -39,15 +40,16 @@ export class ProductItem extends Component {
     }
 
     render() {
+        const item = this.props.item
         return (
-            <GridColumn className="item-wrapper" to="/product/detail/producttest">
+            <GridColumn as={Link} className="item-wrapper" to={`/product/${item.id}`}>
                 <div className="item">
                     <div className="image-wrapper">
-                        <img className={this.state.style} src={this.props.imgUrl} onLoad={(e) => this.onImgLoad(e.target)}
+                        <img className={this.state.style} src={item.image} onLoad={(e) => this.onImgLoad(e.target)}
                             style={{ display: !this.state.loaded ? "none" : "inherit" }}
                         />
                     </div>
-                    
+
                     <div className="item-footer">
                         <div className="product-info">
                             <Label color='pink' className="sale">
@@ -57,12 +59,16 @@ export class ProductItem extends Component {
 
                         <div className="price-wrapper">
                             <Label.Group tag>
-                                <Label as='a' className="price origin">$10.00</Label>
-                                <Label as='a' className="price" color="blue">$19.99</Label>
+                                <Label className="price origin">$10.00</Label>
+                                <Label className="price" color="blue">${item.price}</Label>
                             </Label.Group>
                         </div>
-                    </div>
 
+                        <div className="title">
+                            {item.title}
+                        </div>
+
+                    </div>
                 </div>
             </GridColumn>
         )

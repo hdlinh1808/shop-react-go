@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
-import { Grid, Segment } from 'semantic-ui-react';
+import { Grid, Dropdown, GridRow, Pagination, GridColumn } from 'semantic-ui-react';
 import ProductItem from './ProductItem';
+import StyledContentLoader from 'styled-content-loader';
+
+
+const sortOptions = [{ key: 'new', value: 'new', text: 'New' },
+{ key: 'popular', value: 'popular', text: 'Popular' },
+{ key: 'price_desc', value: 'price_desc', text: 'Price (desc)' },
+{ key: 'price_asc', value: 'price_asc', text: 'Price (asc)' }];
+
 
 class ProductListView extends Component {
 
@@ -9,32 +17,81 @@ class ProductListView extends Component {
 
         this.state = {
             numItemPerRow: 4,
+            items: [],
+            sortOptionSelect: 'new',
+            activePage: 1,
+            totalPages: 1,
         }
     }
 
-
-    getDataTest() {
-        return [{ imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" },
-        { imgUrl: "https://image.freepik.com/free-vector/pack-colorful-square-emoticons_23-2147589525.jpg" },
-        { imgUrl: "https://upload.wikimedia.org/wikipedia/commons/9/91/F-15_vertical_deploy.jpg" }]
+    setItem(items) {
+        this.setState({
+            items: items,
+        })
     }
 
+    componentDidMount() {
+        this.fetchItems();
+    }
+
+    fetchItems() {
+        fetch('https://fakestoreapi.com/products')
+            .then(response => response.json())
+            .then(result => this.setItem(result));
+    }
+
+    handleSortOptionChange(e, target) {
+        let option = target?.value;
+        this.setState({
+            sortOptionSelect: option,
+        }, () => {
+            console.log(this.state)
+        })
+    }
+
+    handlePaginationChange(e, target) {
+        this.setState({
+            activePage: target.activePage,
+        })
+    }
 
     render() {
         var rows = [];
-        let data = this.getDataTest();
-        for (let i = 0; i < 20; i++) {
-            data.push(data[i % 3]);
+        let items = this.state.items;
+        for (let i = 0; i < items.length; i++) {
+            let item = items[i];
+            rows.push(<ProductItem item={item} key={item.id}></ProductItem>)
         }
-        for (let i = 0; i < data.length; i++) {
-            let item = data[i];
-            rows.push(<ProductItem imgUrl={item.imgUrl} key={i + ""}></ProductItem>)
-            // rows.push(<div key={i + "" + i}>{i}</div>)
-        }
+
         return (
-            <Grid stackable doubling columns={this.state.numItemPerRow} className="content">
-                {rows}
-            </Grid>
+            <div>
+                <GridRow className="filter">
+                    Sort by: <Dropdown selection placeholder='Select your country' options={sortOptions}
+                        onChange={(e, target) => this.handleSortOptionChange(e, target)}
+                        defaultValue={this.state.sortOptionSelect} />
+                </GridRow>
+
+                <Grid stackable doubling columns={this.state.numItemPerRow} className="content">
+                    {rows}
+                </Grid>
+
+                <Grid className='listview-footer no-margin' >
+                    <Grid.Column>
+                        <Pagination floated='right'
+                            siblingRange={1}
+                            boundaryRange={0}
+                            // ellipsisItem={null}
+                            firstItem={null}
+                            lastItem={null}
+                            activePage={this.state.activePage}
+                            onPageChange={(e, target) => this.handlePaginationChange(e, target)}
+                            totalPages={50}
+                        />
+                    </Grid.Column>
+                </Grid>
+
+            </div>
+
         )
     }
 }

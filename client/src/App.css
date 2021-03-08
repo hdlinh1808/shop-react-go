@@ -41,7 +41,7 @@
 /* semanticui container custom */
 @media only screen and (min-width: 1400px){
   .ui.container {
-    width: 1300px;
+    /* width: 1300px; */
   }
 }
 

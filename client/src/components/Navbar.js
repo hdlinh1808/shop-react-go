@@ -8,8 +8,8 @@ class Navbar extends Component {
         super(props)
 
         let activeItem = '';
-        if(this.props?.location?.state){
-            activeItem = this.props.location.state;
+        if(this.props?.location?.state?.active){
+            activeItem = this.props.location.state.active;
         }else {
             activeItem = "home";
         }
@@ -29,12 +29,11 @@ class Navbar extends Component {
 
     render() {
         const { activeItem } = this.state;
-        console.log(activeItem)
         return (
             <div>
                 <Menu style={{ marginTop: "20px" }} pointing secondary size='large'>
                     <Menu.Item as={Link}
-                        to="/"
+                        to={{pathname: "/" , state: {active: "home"} }}
                         name='home'
                         active={activeItem === 'home'}
                         onClick={this.handleItemClick}
@@ -50,7 +49,7 @@ class Navbar extends Component {
                         onClick={this.handleItemClick}
                     />
                     <Menu.Item as={Link}
-                        to="/about"
+                         to={{pathname: "/about" , state: {active: "about"} }}
                         name='about'
                         active={activeItem === 'about'}
                         onClick={this.handleItemClick}
@@ -69,5 +68,5 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar
+export default withRouter(Navbar)
 // export default Navbar
