@@ -1,0 +1,21 @@
+.register-wrapper.ui.grid {
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.register-form .required {
+    color: rgba(255, 0, 0, 0.75);
+}
+
+.register-form .required::after {
+    content: ' *';
+}
+
+.register-form .date-picker .field {
+    margin-bottom: 0;
+}
+
+.register-form .form-footer {
+    padding-top: 20px;
+    border-top: 1px solid #efefef;
+}

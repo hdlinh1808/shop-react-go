@@ -20,7 +20,7 @@ class Navbar extends Component {
     }
 
     componentWillMount() {
-
+        
     }
 
     componentWillReceiveProps(newProps) {
@@ -63,7 +63,7 @@ class Navbar extends Component {
                     />
                     <Menu.Menu position='right'>
                         <Menu.Item as={Link}
-                            to={{ pathname: "/login", state: { active: "login" } }}
+                            to={{ pathname: "/register", state: { active: "login" } }}
                             name='login'
                             active={activeItem === 'login'}
                             // onClick={this.handleItemClick}

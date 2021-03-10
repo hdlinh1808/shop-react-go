@@ -66,7 +66,7 @@ class ProductListView extends Component {
         return (
             <div>
                 <GridRow className="filter">
-                    Sort by: <Dropdown selection placeholder='Select your country' options={sortOptions}
+                    Sort by: <Dropdown selection placeholder='' options={sortOptions}
                         onChange={(e, target) => this.handleSortOptionChange(e, target)}
                         defaultValue={this.state.sortOptionSelect} />
                 </GridRow>
