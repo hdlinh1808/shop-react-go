@@ -20,6 +20,7 @@ export class Register extends Component {
             name: { valid: true, value: "", error: null },
             email: { valid: true, value: "", error: null },
             password: { valid: true, value: "", error: null },
+            repassword: { valid: true, value: "", error: null },
             isClickRegister: false,
         }
 
@@ -33,6 +34,7 @@ export class Register extends Component {
         this.handleNameInputChange({ target: { value: "" } })
         this.handleEmailInputChange({ target: { value: "" } })
         this.handlePasswordInputChange({ target: { value: "" } })
+        // this.handleRepasswordInputChange({ target: { value: "" } })
     }
 
     changeBirthday(date) {
@@ -93,8 +95,28 @@ export class Register extends Component {
             valid = false;
             error = "Mật khẩu không hợp lệ. Mật khẩu yêu cầu ít nhất 8 kí tự, bắt buộc có chữ thường, chữ hoa và số!"
         }
+        
         this.setState({
             password: { valid: valid, value: value, error: error },
+        }, () => {
+            // console.log(this.state.repassword)
+            this.handleRepasswordInputChange({target: {value: this.state.repassword.value}});
+        })
+    }
+
+    handleRepasswordInputChange(e) {
+        let value = e.target.value;
+        let valid = true;
+        let error = null;
+        if (value == "") {
+            valid = false;
+            error = "Không được bỏ trống!";
+        } else if (value != this.state.password.value) {
+            valid = false;
+            error = "Không khớp với mật khẩu"
+        }
+        this.setState({
+            repassword: { valid: valid, value: value, error: error },
         })
     }
 
@@ -147,6 +169,11 @@ export class Register extends Component {
                             <label>Mật khẩu<span className="required" /></label>
                             <input placeholder='Password' type="password" onChange={(e) => this.handlePasswordInputChange(e)} value={this.state.password?.value} />
                             <Label pointing prompt style={{ display: !this.state.password?.valid && this.state.isClickRegister ? "" : "none" }}>{this.state.password?.error}</Label>
+                        </Form.Field>
+                        <Form.Field error={!this.state.repassword?.valid && this.state.isClickRegister}>
+                            <label>Nhập lại mật khẩu<span className="required" /></label>
+                            <input placeholder='Password' type="password" onChange={(e) => this.handleRepasswordInputChange(e)} value={this.state.repassword?.value} />
+                            <Label pointing prompt style={{ display: !this.state.repassword?.valid && this.state.isClickRegister ? "" : "none" }}>{this.state.repassword?.error}</Label>
                         </Form.Field>
                         <Form.Field>
                             <label>Giới tính<span className="required" /></label>
