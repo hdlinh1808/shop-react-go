@@ -17,7 +17,7 @@ class ProductListView extends Component {
 
         this.state = {
             numItemPerRow: 4,
-            items: [],
+            items: new Array(12).fill(null),
             sortOptionSelect: 'new',
             activePage: 1,
             totalPages: 1,
@@ -60,7 +60,7 @@ class ProductListView extends Component {
         let items = this.state.items;
         for (let i = 0; i < items.length; i++) {
             let item = items[i];
-            rows.push(<ProductItem item={item} key={item.id}></ProductItem>)
+            rows.push(<ProductItem item={item} key={item ? item.id : i} ></ProductItem>)
         }
 
         return (

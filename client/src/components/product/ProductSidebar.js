@@ -9,7 +9,7 @@ class ProductSidebar extends Component {
 
 
     setVisible(visible) {
-        console.log("onHideCall");
+        // console.log("onHideCall");
         this.props.setVisibleSidebar(visible)
     }
 
