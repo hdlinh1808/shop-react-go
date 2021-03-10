@@ -1,4 +1,4 @@
-.item-container {
+.item-detail-container {
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -55,11 +55,11 @@
     font-weight: 700;
 }
 
-.description {
+.item-detail-container .description {
     margin-top:20px;
 }
 
-.description > .content {
+.item-detail-container .description > .content {
     font-size: 16px;
 }
 

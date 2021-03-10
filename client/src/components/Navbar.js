@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import { withRouter } from 'react-router-dom'
 class Navbar extends Component {
 
@@ -8,19 +8,26 @@ class Navbar extends Component {
         super(props)
 
         let activeItem = '';
-        if(this.props?.location?.state?.active){
+        if (this.props?.location?.state?.active) {
             activeItem = this.props.location.state.active;
-        }else {
+        } else {
             activeItem = "home";
         }
-        
+
         this.state = {
             activeItem: activeItem,
         }
     }
 
-    componentWillMount(){
+    componentWillMount() {
 
+    }
+
+    componentWillReceiveProps(newProps) {
+        let newActive = newProps?.location?.state?.active;
+        if (newActive != this.state.activeItem) {
+            this.setState({ activeItem: newActive })
+        }
     }
 
     handleItemClick = (e, { name }) => {
@@ -33,33 +40,33 @@ class Navbar extends Component {
             <div>
                 <Menu style={{ marginTop: "20px" }} pointing secondary size='large'>
                     <Menu.Item as={Link}
-                        to={{pathname: "/" , state: {active: "home"} }}
+                        to={{ pathname: "/", state: { active: "home" } }}
                         name='home'
                         active={activeItem === 'home'}
-                        onClick={this.handleItemClick}
+                        // onClick={this.handleItemClick}
                     />
                     <Menu.Item
                         name='messages'
                         active={activeItem === 'messages'}
-                        onClick={this.handleItemClick}
+                        // onClick={this.handleItemClick}
                     />
                     <Menu.Item
                         name='friends'
                         active={activeItem === 'friends'}
-                        onClick={this.handleItemClick}
+                        // onClick={this.handleItemClick}
                     />
                     <Menu.Item as={Link}
-                         to={{pathname: "/about" , state: {active: "about"} }}
+                        to={{ pathname: "/about", state: { active: "about" } }}
                         name='about'
                         active={activeItem === 'about'}
-                        onClick={this.handleItemClick}
+                        // onClick={this.handleItemClick}
                     />
                     <Menu.Menu position='right'>
                         <Menu.Item as={Link}
-                            to="/login"
+                            to={{ pathname: "/login", state: { active: "login" } }}
                             name='login'
-                            active={activeItem === 'logout'}
-                            onClick={this.handleItemClick}
+                            active={activeItem === 'login'}
+                            // onClick={this.handleItemClick}
                         />
                     </Menu.Menu>
                 </Menu>

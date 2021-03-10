@@ -7,7 +7,7 @@ const HORIZONTAL_IMAGE_CLASS = "image-horizontal";
 const SQUARE_IMAGE_CLASS = "image";
 
 const getItemLoader = () => (
-    <div class="image">
+    <div className="image">
         <ContentLoader viewBox="0 0 400 400">
             {/* Only SVG shapes */}
             <rect x="0" y="0" rx="5" ry="5" width="400" height="400" />

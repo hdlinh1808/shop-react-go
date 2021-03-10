@@ -3,4 +3,23 @@
     min-height: 300px;
     background-color: #f9f9f9;
     width: 100%;
+    padding-top: 30px;
+}
+
+.footer .title {
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.footer .ui.list>.item .header {
+    color: rgba(0, 0, 0, 0.6)
+}
+.footer .ui.feed>.event>.label+.content{
+    margin-left: 0;
+}
+
+.footer .ui.list>.item>i.icon {
+    color: rgba(238, 78, 78, 0.5)
 }

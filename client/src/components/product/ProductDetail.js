@@ -90,7 +90,7 @@ class ProductDetail extends Component {
     }
 
     getContentInfo() {
-        return (<div>
+        return (<div className="content">
             <div className="product-name">{this.state.itemInfo.title}</div>
             <div className="category">
                 <Label as='a' color='teal' tag>
@@ -150,7 +150,7 @@ class ProductDetail extends Component {
         }
 
         return (
-            <div className='item-container'>
+            <div className='item-detail-container'>
                 <Grid>
                     <Grid.Column mobile={16} computer={8}>
                         <div className="main-image">
