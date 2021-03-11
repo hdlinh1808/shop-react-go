@@ -20,7 +20,7 @@ class Navbar extends Component {
     }
 
     componentWillMount() {
-        
+
     }
 
     componentWillReceiveProps(newProps) {
@@ -43,30 +43,36 @@ class Navbar extends Component {
                         to={{ pathname: "/", state: { active: "home" } }}
                         name='home'
                         active={activeItem === 'home'}
-                        // onClick={this.handleItemClick}
+                    // onClick={this.handleItemClick}
                     />
                     <Menu.Item
                         name='messages'
                         active={activeItem === 'messages'}
-                        // onClick={this.handleItemClick}
+                    // onClick={this.handleItemClick}
                     />
                     <Menu.Item
                         name='friends'
                         active={activeItem === 'friends'}
-                        // onClick={this.handleItemClick}
+                    // onClick={this.handleItemClick}
                     />
                     <Menu.Item as={Link}
                         to={{ pathname: "/about", state: { active: "about" } }}
                         name='about'
                         active={activeItem === 'about'}
-                        // onClick={this.handleItemClick}
+                    // onClick={this.handleItemClick}
                     />
                     <Menu.Menu position='right'>
                         <Menu.Item as={Link}
-                            to={{ pathname: "/register", state: { active: "login" } }}
+                            to={{ pathname: "/register", state: { active: "register" } }}
+                            name='register'
+                            active={activeItem === 'register'}
+                        // onClick={this.handleItemClick}
+                        />
+                        <Menu.Item as={Link}
+                            to={{ pathname: "/login", state: { active: "login" } }}
                             name='login'
                             active={activeItem === 'login'}
-                            // onClick={this.handleItemClick}
+                        // onClick={this.handleItemClick}
                         />
                     </Menu.Menu>
                 </Menu>

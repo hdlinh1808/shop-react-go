@@ -4,6 +4,7 @@ import SemanticDatepicker from 'react-semantic-ui-datepickers';
 
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 import "../styles/register.css"
+import { Link } from 'react-router-dom';
 const genderOptions = [
     { key: 'male', value: 'male', text: 'Male' },
     { key: 'female', value: 'female', text: 'Female' },
@@ -95,12 +96,12 @@ export class Register extends Component {
             valid = false;
             error = "Mật khẩu không hợp lệ. Mật khẩu yêu cầu ít nhất 8 kí tự, bắt buộc có chữ thường, chữ hoa và số!"
         }
-        
+
         this.setState({
             password: { valid: valid, value: value, error: error },
         }, () => {
             // console.log(this.state.repassword)
-            this.handleRepasswordInputChange({target: {value: this.state.repassword.value}});
+            this.handleRepasswordInputChange({ target: { value: this.state.repassword.value } });
         })
     }
 
@@ -190,7 +191,10 @@ export class Register extends Component {
                         </Form.Field>
                         <div className="form-footer">
                             <Button type="submit" size='large' color='blue' onClick={() => this.submitRegister()}>
-                                <Icon name='address card' /> Register
+                                <Icon name='address card' /> Đăng kí
+                            </Button>
+                            <Button size='large' color='black' as={Link} to={{ pathname: "/login", state: { active: "login" } }}>
+                                <Icon name='angle right' /> Đăng nhập
                             </Button>
                         </div>
                     </Form>
