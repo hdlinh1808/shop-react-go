@@ -4,15 +4,12 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/gorilla/mux"
 	"github.com/hdlinh1808/go-blog/db/mongodb"
-	"github.com/hdlinh1808/go-blog/handler"
+	"github.com/hdlinh1808/go-blog/route"
 )
 
 func main() {
 	mongodb.Init()
-	r := mux.NewRouter()
-	r.HandleFunc("/hello", handler.Test)
-	http.Handle("/", r)
+	http.Handle("/", route.Routes())
 	fmt.Println(http.ListenAndServe(":8080", nil))
 }

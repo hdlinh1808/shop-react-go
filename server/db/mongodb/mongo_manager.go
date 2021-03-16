@@ -3,18 +3,16 @@ package mongodb
 import (
 	"context"
 	"fmt"
-	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 const connectionString = "mongodb://localhost:27017"
-const dbName = "test"
+const dbName = "ecomerce_shop"
 
-var collection *mongo.Collection
-var userCollection *mongo.Collection
+var usersCollection *mongo.Collection
+var testCollection *mongo.Collection
 
 // Init mongodb collection instance
 func Init() {
@@ -25,29 +23,16 @@ func Init() {
 		fmt.Println("error")
 		return
 	}
-
-	collection = client.Database(dbName).Collection("appointment")
-	// test()
-	fmt.Println("Collection instance created!")
+	database := client.Database(dbName)
+	usersCollection = database.Collection("users")
+	testCollection = database.Collection("test")
 }
 
-// GetUserCollection return collection "user"
-func GetUserCollection() *mongo.Collection {
-	return userCollection
+// UsersCollection to get collection for user;
+func UsersCollection() *mongo.Collection {
+	return usersCollection
 }
 
-type TestA struct {
-	ID     primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
-	Detail string             `json:"detail,omitempty" bson:"detail,omitempty"`
-}
-
-func test() {
-	var t TestA
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-	err := collection.FindOne(ctx, TestA{Detail: "please be on time"}).Decode(&t)
-	if err == nil {
-		fmt.Println(t)
-	}
-
+func TestCollection() *mongo.Collection {
+	return testCollection
 }
