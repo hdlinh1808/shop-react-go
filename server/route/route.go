@@ -15,5 +15,9 @@ func Routes() *mux.Router {
 	//User
 	r.HandleFunc("/users", handler.GetAllUser)
 	r.HandleFunc("/users/by", handler.GetUserByField)
+
+	//Product
+	r.HandleFunc("/products/{id}", handler.GetProductByID)
+	r.HandleFunc("/products/by-sku/{sku}", handler.GetProductBySKU)
 	return r
 }

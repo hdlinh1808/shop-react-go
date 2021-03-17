@@ -1,0 +1,74 @@
+{"level":"info","msg":"A group of walrus emerges from the ocean","time":"2021-03-17T11:42:16+07:00"}
+{"level":"info","msg":"Server start fail!","time":"2021-03-17T11:45:03+07:00"}
+{"level":"info","msg":"listen tcp :80: bind: permission denied","time":"2021-03-17T11:49:02+07:00"}
+{"level":"info","msg":"listen tcp :80: bind: permission denied","time":"2021-03-17T11:49:07+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T11:51:10+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T11:53:20+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T11:53:20+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T11:53:20+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:00:16+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:00:16+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:00:16+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:24:12+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:24:12+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:24:12+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:27:25+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:27:25+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:27:25+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:37:16+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:37:16+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:37:16+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:37:54+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:37:54+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:37:54+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:39:14+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:39:14+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:39:14+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:39:29+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:39:29+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:39:29+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:40:35+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:40:35+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:40:35+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:41:04+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:41:04+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:41:04+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:41:19+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:41:19+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:41:19+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:41:29+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:41:29+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:41:29+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:41:54+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:41:54+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:41:54+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:42:16+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:42:16+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:42:16+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:42:38+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:42:38+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:42:38+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:42:54+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:42:54+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:42:54+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:43:43+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:43:43+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:43:43+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:43:51+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:43:51+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:43:51+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:44:10+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:44:10+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:44:10+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:44:17+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:44:17+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:44:17+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:44:26+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:44:26+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:44:26+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:44:38+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:44:38+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:44:38+07:00"}
+{"level":"info","msg":"Init mongodb instance....","time":"2021-03-17T15:44:53+07:00"}
+{"level":"info","msg":"Init mongodb done...","time":"2021-03-17T15:44:53+07:00"}
+{"level":"info","msg":"starting server...","time":"2021-03-17T15:44:53+07:00"}

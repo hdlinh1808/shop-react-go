@@ -9,21 +9,21 @@ import (
 )
 
 //GetUserByID to get user from id
-func GetUserByID(userID string) (*entity.User, error) {
-	return nil, nil
+func GetUserByID(userID string) (*entity.User, int) {
+	return nil, Success
 }
 
 //GetUserByEmail to get user from email
-func GetUserByEmail(email string) (*entity.User, error) {
+func GetUserByEmail(email string) (*entity.User, int) {
 	collection := mongodb.UsersCollection()
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	var user *entity.User
 	user = new(entity.User)
-	err := collection.FindOne(ctx, entity.User{}).Decode(user)
+	err := collection.FindOne(ctx, entity.User{Email: email}).Decode(user)
 	if err == nil {
-		return user, nil
+		user.ID = user.ObjectID.Hex()
+		return user, Success
 	}
-	// test()
-	return nil, nil
+	return nil, Fail
 }
