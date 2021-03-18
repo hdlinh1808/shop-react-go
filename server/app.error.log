@@ -1,1 +1,9 @@
 {"level":"error","msg":"listen tcp :80: bind: permission denied","time":"2021-03-17T11:45:03+07:00"}
+{"level":"error","msg":"listen tcp :8080: bind: address already in use","time":"2021-03-17T16:22:17+07:00"}
+{"level":"error","msg":"listen tcp :8080: bind: address already in use","time":"2021-03-17T16:22:26+07:00"}
+{"level":"error","msg":"listen tcp :8080: bind: address already in use","time":"2021-03-17T17:16:58+07:00"}
+{"level":"error","msg":"cannot Decode to nil value","time":"2021-03-18T09:57:46+07:00"}
+{"level":"error","msg":"struct entity.Category) duplicated key _id","time":"2021-03-18T09:58:11+07:00"}
+{"level":"error","msg":"update document must contain key beginning with '$'","time":"2021-03-18T17:19:04+07:00"}
+{"level":"error","msg":"update document must contain key beginning with '$'","time":"2021-03-18T17:19:19+07:00"}
+{"level":"error","msg":"update document must contain key beginning with '$'","time":"2021-03-18T17:21:12+07:00"}

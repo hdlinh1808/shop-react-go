@@ -12,4 +12,18 @@ var (
 
 	//Unauthorized code
 	Unauthorized = -3
+
+	//AffectedZeroRecord code
+	AffectedZeroRecord = -4
+
+	//IdentifyNotFound code
+	IdentifyNotFound = -5
+
+	//IndentifyNotValid code
+	IndentifyNotValid = -6
 )
+
+//InitData func
+func InitData() {
+	GetAllCategoriesV2()
+}

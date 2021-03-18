@@ -2,7 +2,6 @@ package model
 
 import (
 	"context"
-	"fmt"
 	"time"
 
 	"github.com/hdlinh1808/go-blog/db/mongodb"
@@ -30,9 +29,8 @@ func GetProductBySKU(sku string) (*entity.Product, int) {
 	defer cancel()
 	var product = new(entity.Product)
 	err := collection.FindOne(ctx, entity.Product{Sku: sku}).Decode(product)
-	fmt.Print(product)
 	if err == nil {
-		product.ID = product.ObjectID.Hex()
+		product.ReinitObjectWithMongoDB()
 		return product, Success
 	}
 	return nil, Fail

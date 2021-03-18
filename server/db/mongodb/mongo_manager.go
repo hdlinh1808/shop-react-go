@@ -14,6 +14,7 @@ const dbName = "ecomerce_shop"
 var usersCollection *mongo.Collection
 var productsCollection *mongo.Collection
 var testCollection *mongo.Collection
+var categoriesCollection *mongo.Collection
 
 // Init mongodb collection instance
 func Init() {
@@ -30,6 +31,7 @@ func Init() {
 	database := client.Database(dbName)
 	usersCollection = database.Collection("users")
 	productsCollection = database.Collection("products")
+	categoriesCollection = database.Collection("categories")
 	testCollection = database.Collection("test")
 }
 
@@ -46,4 +48,9 @@ func TestCollection() *mongo.Collection {
 // ProductsCollection collection
 func ProductsCollection() *mongo.Collection {
 	return productsCollection
+}
+
+// CategoriesCollection collection
+func CategoriesCollection() *mongo.Collection {
+	return categoriesCollection
 }
