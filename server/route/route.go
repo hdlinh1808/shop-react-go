@@ -17,7 +17,10 @@ func Routes() *mux.Router {
 	r.HandleFunc("/users/by", handler.GetUserByField)
 
 	//Product
-	r.HandleFunc("/products/{id}", handler.GetProductByID)
+	r.HandleFunc("/products/{id}", handler.GetProductByID).Methods("GET")
+	r.HandleFunc("/products/{id}", handler.DeleteProduct).Methods("DELETE")
+	r.HandleFunc("/products", handler.AddNewProduct).Methods("POST")
+	r.HandleFunc("/products", handler.UpdateProduct).Methods("PUT")
 	r.HandleFunc("/products/by-sku/{sku}", handler.GetProductBySKU)
 
 	//Category

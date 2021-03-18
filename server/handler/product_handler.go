@@ -24,3 +24,18 @@ func GetProductBySKU(writer http.ResponseWriter, request *http.Request) {
 		utils.ResponseWithJSON(writer, 200, product)
 	}
 }
+
+// AddNewProduct func
+func AddNewProduct(writer http.ResponseWriter, request *http.Request) {
+
+}
+
+// UpdateProduct func
+func UpdateProduct(writer http.ResponseWriter, request *http.Request) {
+
+}
+
+// RemoveProduct func
+func DeleteProduct(writer http.ResponseWriter, request *http.Request) {
+
+}
