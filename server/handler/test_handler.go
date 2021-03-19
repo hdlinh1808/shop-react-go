@@ -3,7 +3,7 @@ package handler
 import (
 	"net/http"
 
-	"github.com/hdlinh1808/go-blog/utils"
+	"github.com/hdlinh1808/go-shop/utils"
 )
 
 // Test to test

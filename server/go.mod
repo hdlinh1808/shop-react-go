@@ -1,4 +1,4 @@
-module github.com/hdlinh1808/go-blog
+module github.com/hdlinh1808/go-shop
 
 go 1.13
 

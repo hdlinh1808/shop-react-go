@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/hdlinh1808/go-blog/db/mongodb"
-	"github.com/hdlinh1808/go-blog/entity"
+	"github.com/hdlinh1808/go-shop/db/mongodb"
+	"github.com/hdlinh1808/go-shop/entity"
 	log "github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

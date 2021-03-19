@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/hdlinh1808/go-blog/db/mongodb"
-	"github.com/hdlinh1808/go-blog/entity"
+	"github.com/hdlinh1808/go-shop/db/mongodb"
+	"github.com/hdlinh1808/go-shop/entity"
 )
 
 //GetUserByID to get user from id

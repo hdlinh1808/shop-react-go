@@ -2,7 +2,7 @@ package route
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/hdlinh1808/go-blog/handler"
+	"github.com/hdlinh1808/go-shop/handler"
 )
 
 //Routes to route request

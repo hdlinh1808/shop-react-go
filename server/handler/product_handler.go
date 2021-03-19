@@ -3,11 +3,11 @@ package handler
 import (
 	"net/http"
 
-	"github.com/hdlinh1808/go-blog/entity"
+	"github.com/hdlinh1808/go-shop/entity"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/hdlinh1808/go-blog/model"
-	"github.com/hdlinh1808/go-blog/utils"
+	"github.com/hdlinh1808/go-shop/model"
+	"github.com/hdlinh1808/go-shop/utils"
 
 	"github.com/gorilla/mux"
 )

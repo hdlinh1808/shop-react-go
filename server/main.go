@@ -3,10 +3,10 @@ package main
 import (
 	"net/http"
 
-	"github.com/hdlinh1808/go-blog/db/mongodb"
-	"github.com/hdlinh1808/go-blog/log"
-	"github.com/hdlinh1808/go-blog/model"
-	"github.com/hdlinh1808/go-blog/route"
+	"github.com/hdlinh1808/go-shop/db/mongodb"
+	"github.com/hdlinh1808/go-shop/log"
+	"github.com/hdlinh1808/go-shop/model"
+	"github.com/hdlinh1808/go-shop/route"
 	"github.com/sirupsen/logrus"
 )
 
