@@ -1,8 +1,11 @@
 package log
 
 import (
+	"fmt"
 	"io"
 	"os"
+	"runtime"
+	"strings"
 
 	"github.com/sirupsen/logrus"
 )
@@ -20,9 +23,18 @@ func InitLog() {
 }
 
 func initLog(log *logrus.Logger, filename string) {
+	// log.SetReportCaller(true)
 	log.SetFormatter(&logrus.JSONFormatter{
 		PrettyPrint: false,
+		CallerPrettyfier: func(f *runtime.Frame) (string, string) {
+			repopath := fmt.Sprintf("%sserver/log", os.Getenv("GOPATH"))
+			filename := strings.Replace(f.File, repopath, "", -1)
+			// println(repopath)
+			// println(f.Function)
+			return fmt.Sprintf("%s()", f.Function), fmt.Sprintf("%s:%d", filename, f.Line)
+		},
 	})
+
 	log.Out = os.Stdout
 	file, err := os.OpenFile(filename, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 
