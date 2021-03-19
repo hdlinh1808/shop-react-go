@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/hdlinh1808/go-blog/entity"
-	"github.com/hdlinh1808/go-blog/log"
+	log "github.com/sirupsen/logrus"
 
 	"github.com/hdlinh1808/go-blog/model"
 	"github.com/hdlinh1808/go-blog/utils"

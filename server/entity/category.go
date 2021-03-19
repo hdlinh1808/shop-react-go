@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"github.com/hdlinh1808/go-blog/log"
+	log "github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 

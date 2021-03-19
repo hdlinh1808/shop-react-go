@@ -8,9 +8,10 @@ require (
 	github.com/gorilla/mux v1.8.0
 	github.com/klauspost/compress v1.11.4 // indirect
 	github.com/sirupsen/logrus v1.8.1
-	github.com/unknwon/log v0.0.0-20200308114134-929b1006e34a
 	go.mongodb.org/mongo-driver v1.4.4
 	golang.org/x/crypto v0.0.0-20201221181555-eec23a3978ad // indirect
 	golang.org/x/sync v0.0.0-20201207232520-09787c993a3a // indirect
 	golang.org/x/text v0.3.4 // indirect
+	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
+	gopkg.in/yaml.v2 v2.3.0 // indirect
 )

@@ -6,7 +6,7 @@ import (
 
 	"github.com/hdlinh1808/go-blog/db/mongodb"
 	"github.com/hdlinh1808/go-blog/entity"
-	"github.com/hdlinh1808/go-blog/log"
+	log "github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -48,7 +48,7 @@ func AddNewProduct(p *entity.Product) (string, int) {
 	defer cancel()
 	result, err := mongodb.ProductsCollection().InsertOne(ctx, p)
 	if err != nil {
-		log.Error(err.Error())
+
 		return "", Fail
 	}
 
