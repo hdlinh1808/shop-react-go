@@ -1,7 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+	"os"
+	"runtime/debug"
 
 	"github.com/hdlinh1808/go-blog/model"
 
@@ -16,27 +19,16 @@ func main() {
 	model.InitData()
 	http.Handle("/", route.Routes())
 
-	log.Info("starting server...")
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Unhandle error!")
+			fmt.Printf("Panic: %v,\n%s", r, debug.Stack())
+			os.Exit(1)
+		}
+	}()
 	error := http.ListenAndServe(":8080", nil)
 	if error != nil {
 		log.Info("Server start fail!")
 		log.Error(error.Error())
 	}
-
-	// var a = new(TestA)
-	// a.a.b = 2
-	// test(a)
-	// fmt.Print(a)
-}
-
-func test(a *TestA) {
-	a.a.b = 1
-}
-
-type TestA struct {
-	a TestB
-}
-
-type TestB struct {
-	b int
 }

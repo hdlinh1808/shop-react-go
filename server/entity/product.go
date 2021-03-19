@@ -19,9 +19,22 @@ type Product struct {
 // ReinitObjectWithMongoDB convert ObjectID to string field
 func (p *Product) ReinitObjectWithMongoDB() {
 	p.ID = p.ObjectID.Hex()
-	p.ObjectID = primitive.NilObjectID
+	// p.ObjectID = primitive.NilObjectID
 	p.CategoryID = p.CategoryObjectID.Hex()
-	p.CategoryObjectID = primitive.NilObjectID
+	// p.CategoryObjectID = primitive.NilObjectID
+}
+
+// SetCategoryObjectID func: set categoryID for mongoDB
+func (p *Product) SetCategoryObjectID(id string) error {
+	objectID, err := primitive.ObjectIDFromHex(id)
+	p.CategoryObjectID = objectID
+	return err
+}
+
+func (p *Product) SetObjectID(id string) error {
+	objectID, err := primitive.ObjectIDFromHex(id)
+	p.ObjectID = objectID
+	return err
 }
 
 //ProductPrice struct

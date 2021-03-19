@@ -21,6 +21,9 @@ var (
 
 	//IndentifyNotValid code
 	IndentifyNotValid = -6
+
+	//FieldNotValid
+	FieldNotValid = -7
 )
 
 //InitData func

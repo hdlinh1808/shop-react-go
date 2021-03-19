@@ -56,7 +56,7 @@ func DeleteCategory(w http.ResponseWriter, r *http.Request) {
 		result = getActionResult("Success", nil, status)
 		break
 	case model.AffectedZeroRecord:
-		result = getActionResult("Fail. No record affected, maybe wrong id.", nil, status)
+		result = getActionResult("Fail. No record affected, maybe id not found.", nil, status)
 		break
 	default:
 		result = getActionResult("Fail", nil, model.Fail)
@@ -82,7 +82,7 @@ func UpdateCategory(w http.ResponseWriter, r *http.Request) {
 		result = getActionResult("Success", nil, status)
 		break
 	case model.AffectedZeroRecord:
-		result = getActionResult("Fail. No record affected, maybe wrong id.", nil, status)
+		result = getActionResult("Fail. No record affected, maybe id not found.", nil, status)
 		break
 	case model.IndentifyNotValid:
 		result = getActionResult("Fail. Wrong id.", nil, status)
