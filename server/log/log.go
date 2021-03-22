@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"runtime"
+	"syscall"
 
 	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
@@ -33,12 +34,23 @@ func (hook *WriterHook) Levels() []log.Level {
 	return hook.LogLevels
 }
 
+func redirectStderr(f *os.File) {
+	err := syscall.Dup2(int(f.Fd()), int(os.Stderr.Fd()))
+	if err != nil {
+		logrus.Panic("error")
+	}
+}
+
 //InitLog func
 func InitLog() {
+	file, _ := os.OpenFile("app.exception.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	// redirectStderr(file)
+
 	log.SetOutput(ioutil.Discard)
 	log.SetReportCaller(true)
-	log.SetFormatter(&logrus.JSONFormatter{
-		PrettyPrint: false,
+	log.SetFormatter(&logrus.TextFormatter{
+		// PrettyPrint: false,
+		DisableQuote: true,
 		CallerPrettyfier: func(f *runtime.Frame) (string, string) {
 			// repopath := fmt.Sprintf("%sserver/log", os.Getenv("GOPATH"))
 			// filename := strings.Replace(f.File, repopath, "", -1)

@@ -12,6 +12,7 @@ import (
 
 // GetAllCategories func
 func GetAllCategories(writer http.ResponseWriter, request *http.Request) {
+	defer handleException(&writer)
 	result, status := model.GetAllCategoriesV2()
 	if status == model.Success {
 		utils.ResponseWithJSON(writer, 200, result)

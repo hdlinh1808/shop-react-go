@@ -11,17 +11,13 @@ import (
 )
 
 func main() {
+
 	log.InitLog()
 	mongodb.Init()
 	model.InitData()
+
 	http.Handle("/", route.Routes())
-	// defer func() {
-	// 	if r := recover(); r != nil {
-	// 		fmt.Println("Unhandle error!")
-	// 		fmt.Printf("Panic: %v,\n%s", r, debug.Stack())
-	// 		os.Exit(1)
-	// 	}
-	// }()
+
 	logrus.Info("start server...")
 	error := http.ListenAndServe(":8080", nil)
 	if error != nil {
