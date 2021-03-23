@@ -1,8 +1,11 @@
 package route
 
 import (
+	"net/http"
+
 	"github.com/gorilla/mux"
 	"github.com/hdlinh1808/go-shop/handler"
+	"github.com/hdlinh1808/go-shop/middleware"
 )
 
 //Routes to route request
@@ -10,11 +13,16 @@ func Routes() *mux.Router {
 	r := mux.NewRouter()
 
 	//for only test
-	r.HandleFunc("/hello", handler.Test)
+
+	test := r.Methods("GET").Subrouter()
+	test.HandleFunc("/hello", handler.Test)
+	test.Use(middleware.MiddlewareTest)
 
 	//User
-	r.HandleFunc("/users", handler.GetAllUser)
-	r.HandleFunc("/users/by", handler.GetUserByField)
+	r.HandleFunc("/users", handler.RegisterUser).Methods(http.MethodPost)
+	// r.HandleFunc("/users", handler.GetAllUser)
+	r.HandleFunc("/users/by", handler.GetUserByField).Methods(http.MethodGet)
+	r.HandleFunc("/users/by-email", handler.UpdateUserByEmail).Methods(http.MethodPut)
 
 	//Product
 	r.HandleFunc("/products/{id}", handler.GetProductByID).Methods("GET")
@@ -28,5 +36,6 @@ func Routes() *mux.Router {
 	r.HandleFunc("/categories", handler.CreateNewCategory).Methods("POST")
 	r.HandleFunc("/categories", handler.DeleteCategory).Methods("DELETE")
 	r.HandleFunc("/categories", handler.UpdateCategory).Methods("PUT")
+
 	return r
 }

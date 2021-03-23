@@ -1,3 +1,4 @@
 /client/node_modules/
 /server/app.log
 /server/app.error.log
+/server/app.exception.log

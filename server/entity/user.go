@@ -10,7 +10,8 @@ type User struct {
 	Email     string             `json:"email,omitempty" bson:"email,omitempty"`
 	FirstName string             `json:"first_name,omitempty" bson:"first_name,omitempty"`
 	LastName  string             `json:"last_name,omitempty" bson:"last_name,omitempty"`
-	Password  string             `json:"hashed_password,omitempty" bson:"hashed_password,omitempty"`
+	FullName  string             `json:"name,omitempty" bson:"name,omitempty"`
+	Password  string             `json:"password,omitempty" bson:"hashed_password,omitempty"`
 	Addresses []Address          `json:"addresses,omitempty" bson:"addresses,omitempty"`
 }
 

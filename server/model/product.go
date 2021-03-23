@@ -48,7 +48,6 @@ func AddNewProduct(p *entity.Product) (string, int) {
 	defer cancel()
 	result, err := mongodb.ProductsCollection().InsertOne(ctx, p)
 	if err != nil {
-
 		return "", Fail
 	}
 

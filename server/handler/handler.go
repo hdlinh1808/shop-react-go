@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"runtime/debug"
 
+	"github.com/hdlinh1808/go-shop/model"
+	"github.com/hdlinh1808/go-shop/utils"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -18,7 +20,7 @@ type ActionResult struct {
 //responseWithJSON func
 func responseWithJSON(writer http.ResponseWriter, object interface{}) {
 	writer.Header().Set("Content-Type", "application/json")
-	writer.WriteHeader(200)
+	writer.WriteHeader(http.StatusOK)
 	json.NewEncoder(writer).Encode(object)
 }
 
@@ -27,8 +29,17 @@ func getActionResult(msg string, data interface{}, status int) *ActionResult {
 	return result
 }
 
-func handleException(writer *http.ResponseWriter) {
+func handleException(w *http.ResponseWriter) {
 	if r := recover(); r != nil {
 		log.Error("Unhandle error: ", r, "\n", string(debug.Stack()))
+		responseWithJSON(*w, getActionResult("Bad request", nil, model.BadRequest))
+	}
+}
+
+func decoderJSONObjectWithHandleError(w http.ResponseWriter, r *http.Request, o interface{}) {
+	defer handleException(&w)
+	err := utils.DecoderJSONObject(&r.Body, o)
+	if err != nil {
+		panic(err)
 	}
 }

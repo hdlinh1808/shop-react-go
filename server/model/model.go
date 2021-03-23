@@ -1,5 +1,10 @@
 package model
 
+import (
+	"context"
+	"time"
+)
+
 var (
 	//Success code
 	Success = 0
@@ -24,9 +29,17 @@ var (
 
 	//FieldNotValid
 	FieldNotValid = -7
+
+	//BadRequest
+	BadRequest = -8
 )
 
 //InitData func
 func InitData() {
 	GetAllCategoriesV2()
+}
+
+func getContext() (context.Context, context.CancelFunc) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	return ctx, cancel
 }

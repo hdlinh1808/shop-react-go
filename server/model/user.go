@@ -6,6 +6,8 @@ import (
 
 	"github.com/hdlinh1808/go-shop/db/mongodb"
 	"github.com/hdlinh1808/go-shop/entity"
+	log "github.com/sirupsen/logrus"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 //GetUserByID to get user from id
@@ -25,5 +27,37 @@ func GetUserByEmail(email string) (*entity.User, int) {
 		user.ID = user.ObjectID.Hex()
 		return user, Success
 	}
+	log.Error(err.Error())
 	return nil, Fail
+}
+
+//CreateNewUser func
+func CreateNewUser(user *entity.User) int {
+	ctx, cancel := getContext()
+	defer cancel()
+	_, err := mongodb.UsersCollection().InsertOne(ctx, user)
+
+	if err != nil {
+		log.Error(err.Error())
+		return Fail
+	}
+	return Success
+}
+
+// UpdateUserByEmail func
+func UpdateUserByEmail(user *entity.User) int {
+	ctx, cancel := getContext()
+	defer cancel()
+	result, err := mongodb.UsersCollection().ReplaceOne(ctx, bson.M{"email": user.Email}, user)
+
+	if err != nil {
+		log.Error(err.Error())
+		return Fail
+	}
+
+	if result != nil && result.ModifiedCount == 0 {
+		return AffectedZeroRecord
+	}
+
+	return Success
 }
