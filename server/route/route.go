@@ -5,7 +5,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/hdlinh1808/go-shop/handler"
-	"github.com/hdlinh1808/go-shop/middleware"
+	"github.com/hdlinh1808/go-shop/middleware/acl"
 )
 
 //Routes to route request
@@ -16,7 +16,7 @@ func Routes() *mux.Router {
 
 	test := r.Methods("GET").Subrouter()
 	test.HandleFunc("/hello", handler.Test)
-	test.Use(middleware.MiddlewareTest)
+	test.Use(acl.DisallowAnon)
 
 	//User
 	r.HandleFunc("/users", handler.RegisterUser).Methods(http.MethodPost)

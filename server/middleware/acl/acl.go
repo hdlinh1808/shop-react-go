@@ -31,7 +31,7 @@ func DisallowAnon(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// Get session
 		sess := session.Instance(r)
-
+		// sess.Save(r, w)
 		// If user is not authenticated, don't allow them to access the page
 		if sess.Values["id"] == nil {
 			actionResult := &handler.ActionResult{Message: "Unauthorized", Data: nil, Status: &model.Unauthorized}
