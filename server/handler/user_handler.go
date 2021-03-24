@@ -18,7 +18,7 @@ func GetUserByField(writer http.ResponseWriter, request *http.Request) {
 	email := request.URL.Query().Get("email")
 	user, statusCode := model.GetUserByEmail(email)
 	if statusCode == model.Success {
-		utils.ResponseWithJSON(writer, http.StatusOK, user)
+		utils.ResponseWithJSON(writer, user)
 	}
 }
 
@@ -34,7 +34,12 @@ func RegisterUser(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
+	u.Password, err = utils.HashString(u.Password)
 	var result *ActionResult
+	if err != nil {
+		result = getActionResult("Fail! Server has error", nil, model.Fail)
+	}
+
 	status := model.CreateNewUser(u)
 	switch status {
 	case model.Success:

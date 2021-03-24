@@ -10,5 +10,5 @@ import (
 func Test(writer http.ResponseWriter, request *http.Request) {
 	m := make(map[string]string)
 	m["message"] = "hello world!"
-	utils.ResponseWithJSON(writer, 200, m)
+	utils.ResponseWithJSON(writer, m)
 }

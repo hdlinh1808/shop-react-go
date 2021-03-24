@@ -44,7 +44,7 @@ func CreateNewUser(user *entity.User) int {
 	return Success
 }
 
-// UpdateUserByEmail func
+// UpdateUserByEmail func: need change: use $set instead of replacing
 func UpdateUserByEmail(user *entity.User) int {
 	ctx, cancel := getContext()
 	defer cancel()

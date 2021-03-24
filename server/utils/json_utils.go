@@ -7,9 +7,9 @@ import (
 )
 
 // ResponseWithJSON respone a json object
-func ResponseWithJSON(writer http.ResponseWriter, status int, object interface{}) {
+func ResponseWithJSON(writer http.ResponseWriter, object interface{}) {
 	writer.Header().Set("Content-Type", "application/json")
-	writer.WriteHeader(status)
+	writer.WriteHeader(http.StatusOK)
 	json.NewEncoder(writer).Encode(object)
 }
 

@@ -32,6 +32,9 @@ var (
 
 	//BadRequest
 	BadRequest = -8
+
+	//LoggedIn
+	LoggedIn = -9
 )
 
 //InitData func
