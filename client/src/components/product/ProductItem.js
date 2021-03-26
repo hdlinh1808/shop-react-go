@@ -34,7 +34,7 @@ export class ProductItem extends Component {
         return (
             <GridColumn as={Link} className="item-wrapper" to={`/product/${item.id}`}>
                 <div className="item">
-                    <DirectionImage imgSrc={item.image} loaded></DirectionImage>
+                    <DirectionImage imgSrc={item.image} loaded={false}></DirectionImage>
 
                     <div className="item-footer">
                         <div className="product-info">

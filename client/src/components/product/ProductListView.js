@@ -35,7 +35,7 @@ class ProductListView extends Component {
     }
 
     fetchItems() {
-        fetch('https://fakestoreapi.com/products')
+        fetch('https://fakestoreapi.herokuapp.com/products')
             .then(response => response.json())
             .then(result => this.setItem(result));
     }
