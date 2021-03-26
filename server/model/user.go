@@ -8,11 +8,28 @@ import (
 	"github.com/hdlinh1808/go-shop/entity"
 	log "github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 //GetUserByID to get user from id
 func GetUserByID(userID string) (*entity.User, int) {
-	return nil, Success
+	ctx, cancel := getContext()
+	defer cancel()
+	var user *entity.User
+	user = new(entity.User)
+	ObjectID, err := primitive.ObjectIDFromHex(userID)
+	if err != nil {
+		return nil, IndentifyNotValid
+	}
+
+	err = mongodb.UsersCollection().FindOne(ctx, entity.User{ObjectID: ObjectID}).Decode(user)
+	if err != nil {
+		log.Error(err)
+		return nil, Fail
+	}
+
+	user.ID = userID
+	return user, Success
 }
 
 //GetUserByEmail to get user from email
