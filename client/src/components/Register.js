@@ -5,6 +5,8 @@ import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 import "../styles/register.css"
 import { Link } from 'react-router-dom';
+import { PATH_HOME } from "../pathname/Pathname"
+import { isAuthenticated } from '../authen/Authenticate'
 const genderOptions = [
     { key: 'male', value: 'male', text: 'Male' },
     { key: 'female', value: 'female', text: 'Female' },
@@ -23,6 +25,10 @@ export class Register extends Component {
             password: { valid: true, value: "", error: null },
             repassword: { valid: true, value: "", error: null },
             isClickRegister: false,
+        }
+
+        if (isAuthenticated()) {
+            this.props.history.push(PATH_HOME)
         }
 
     }
