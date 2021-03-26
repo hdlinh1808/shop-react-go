@@ -5,9 +5,9 @@
 		"Options": {
 			"Path": "/",
 			"Domain": "",
-			"MaxAge": 28800,
+			"MaxAge": 7200,
 			"Secure": false,
-			"HttpOnly": true
+			"HttpOnly": false
 		}
 	}
 }
