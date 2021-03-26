@@ -26,23 +26,32 @@ export class DirectionImage extends Component {
     }
 
     onImgLoad(img) {
-        let naturalHeight = img.naturalHeight;
-        let naturalWidth = img.naturalWidth;
-        let style = "";
-        if (naturalWidth > naturalHeight) {
-            style = HORIZONTAL_IMAGE_CLASS;
-        } else if (naturalHeight > naturalWidth) {
-            style = VERTICAL_IMAGE_CLASS;
-        } else {
-            style = SQUARE_IMAGE_CLASS;
-        }
-
-        this.setState({
-            style: style,
-        }, () => {
+        try {
+            let naturalHeight = img.naturalHeight;
+            let naturalWidth = img.naturalWidth;
+            let style = "";
+            if (naturalWidth > naturalHeight) {
+                style = HORIZONTAL_IMAGE_CLASS;
+            } else if (naturalHeight > naturalWidth) {
+                style = VERTICAL_IMAGE_CLASS;
+            } else {
+                style = SQUARE_IMAGE_CLASS;
+            }
             this.setState({
-                loaded: true,
+                style: style,
+            }, () => {
+                this.setState({
+                    loaded: true,
+                })
             })
+        } catch (ex) {
+            console.log(ex)
+        }
+    }
+
+    onImgError(){
+        this.setState({
+            loaded: true
         })
     }
 
@@ -59,8 +68,8 @@ export class DirectionImage extends Component {
         return (
             <div className="image-wrapper">
                 {loader}
-                <img className={this.state.style} src={this.props.imgSrc} onLoad={(e) => this.onImgLoad(e.target)}
-                    style={{ display: !this.state.loaded ? "none" : "inherit" }}
+                <img className={this.state.style} src={this.props.imgSrc} alt="none" onLoad={(e) => this.onImgLoad(e.target)} onError={(e) => this.onImgError()}
+                style={{ display: !this.state.loaded ? "none" : "inherit" }}
                 />
             </div>
         )
