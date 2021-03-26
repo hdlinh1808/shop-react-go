@@ -34,9 +34,15 @@ func Instance(r *http.Request) *sessions.Session {
 // Empty deletes all the current session values
 func Empty(sess *sessions.Session) {
 	// Clear out all stored values in the cookie
+	// sess.Options.MaxAge = -1
 	for k := range sess.Values {
 		delete(sess.Values, k)
 	}
+}
+
+//GetSessionID func
+func GetSessionID(sess *sessions.Session) interface{} {
+	return sess.Values["id"]
 }
 
 // Save func
