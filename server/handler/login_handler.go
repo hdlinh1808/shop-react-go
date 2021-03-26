@@ -6,6 +6,7 @@ import (
 	"github.com/hdlinh1808/go-shop/model"
 	"github.com/hdlinh1808/go-shop/session"
 	"github.com/hdlinh1808/go-shop/utils"
+	log "github.com/sirupsen/logrus"
 )
 
 //Account struct
@@ -49,4 +50,39 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	responseWithJSON(w, result)
+}
+
+//Logout func
+func Logout(w http.ResponseWriter, r *http.Request) {
+	defer handleException(&w)
+	var result *ActionResult
+
+	sess := session.Instance(r)
+
+	if sess.Values["id"] != nil { //logout success
+		log.Info("remove session!")
+		session.Empty(sess)
+		sess.Options.MaxAge = -1
+		sess.Save(r, w)
+		// removeCookie(&w)
+		result = getActionResult("Success", nil, model.Success)
+
+		responseWithJSON(w, result)
+		return
+	}
+
+	result = getActionResult("Fail", nil, model.Unauthorized)
+	responseWithJSON(w, result)
+}
+
+func removeCookie(w *http.ResponseWriter) {
+	c := &http.Cookie{
+		Name:     "shopsess",
+		Value:    "",
+		Path:     "/",
+		MaxAge:   -1,
+		HttpOnly: true,
+	}
+
+	http.SetCookie(*w, c)
 }
