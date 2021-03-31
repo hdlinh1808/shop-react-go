@@ -11,11 +11,9 @@ class Navbar extends Component {
     constructor(props) {
         super(props)
 
-        let activeItem = '';
+        let activeItem = 'home';
         if (this.props?.location?.state?.active) {
             activeItem = this.props.location.state.active;
-        } else {
-            activeItem = "";
         }
 
         this.state = {
