@@ -9,8 +9,6 @@ import Account from './account/Account';
 import AccountAddress from './account/AccountListAddress';
 
 
-
-
 class AppBody extends Component {
     render() {
         return (
