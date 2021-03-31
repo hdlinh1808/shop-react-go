@@ -1,0 +1,8 @@
+.admin .admin-sidebar {
+    border-radius: 0px;
+    min-height: calc(100vh - 2px);
+}
+
+.admin .ui.segment.content {
+    border-radius: 0px;
+}

@@ -30,7 +30,7 @@
     transition: margin-left .5s ease;
 }
 
-.ui.inverted.menu {
+.ui.inverted.menu.product-sidebar {
     background-color: #fff;
 }
 
