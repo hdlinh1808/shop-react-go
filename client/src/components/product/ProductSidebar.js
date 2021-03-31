@@ -9,7 +9,6 @@ class ProductSidebar extends Component {
 
 
     setVisible(visible) {
-        // console.log("onHideCall");
         this.props.setVisibleSidebar(visible)
     }
 
@@ -24,7 +23,7 @@ class ProductSidebar extends Component {
                 inverted
                 vertical
                 visible={this.props.visible}
-                // onHide={()=> this.setVisible(false)}
+                className="product-sidebar"
                 >
                 <Menu.Item as='a'><Icon name='home' />Home</Menu.Item>
                 <Menu.Item as='a'><Icon name='gamepad' />Games</Menu.Item>
