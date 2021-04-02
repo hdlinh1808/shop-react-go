@@ -18,6 +18,10 @@ class AdminSidebar extends Component {
         }
     }
 
+    componentDidMount(){
+        console.log("componentDidMount AdminSidebar")
+    }
+
     componentWillReceiveProps(newProps) {
         let newActive = newProps?.location?.state?.active;
         if (newActive != this.state.activeItem) {
@@ -49,8 +53,10 @@ class AdminSidebar extends Component {
                         />
                     </Menu.Menu>
                 </Menu.Item>
-                <Menu.Item
+                <Menu.Item as={Link}
                     name='category'
+                    to={{ pathname: "/admin/category", state: { active: "category" } }}
+                    active={activeItem === 'category'}
                 />
                 <Menu.Item
                     name='about'
