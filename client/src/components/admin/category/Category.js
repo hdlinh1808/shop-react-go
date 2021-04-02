@@ -1,30 +1,11 @@
 import React, { Component } from 'react'
-import { getAllCategories } from '../../../model/CategoryModel'
-import MaterialTable from 'material-table'
+import { getAllCategories, addCategory, deleteCategory, updateCategory } from '../../../model/CategoryModel'
 
-//material table
-import { forwardRef } from 'react';
-import { AddBox, ArrowDownward, Check, Clear, DeleteOutline, ChevronRight, Edit, SaveAlt, FilterList, FirstPage, LastPage, ChevronLeft, Search, Remove, ViewColumn } from "@material-ui/icons";
-import { Label,Button,Icon } from 'semantic-ui-react';
-const tableIcons = {
-    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
-    DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
-    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
-    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
-    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
-};
+import { Label, Button, Icon, Table, Pagination, Confirm } from 'semantic-ui-react';
+import ModelCategory from './ModalCategory';
+import { SemanticToastContainer, toast } from 'react-semantic-toasts';
+import 'react-semantic-toasts/styles/react-semantic-alert.css';
+
 
 
 export class Category extends Component {
@@ -36,7 +17,11 @@ export class Category extends Component {
             category: {
                 root: null,
                 map: null,
-            }
+                unParent: null,
+            },
+            openModal: false,
+            updateCategory: null,
+            removeCategoryKey: null,
         }
 
         this.props.setTitle("Category")
@@ -48,6 +33,10 @@ export class Category extends Component {
     }
 
     componentDidMount() {
+        this.loadCategories()
+    }
+
+    loadCategories() {
         getAllCategories()
             .then((data) => {
                 this.setState({
@@ -79,25 +68,25 @@ export class Category extends Component {
         let keys = Object.keys(data)
         keys.forEach(function (catId, index) {
             let category = data[catId]
-            delete (category.id)
 
             let parentId = category.parentId;
             if (parentId == null) { // root
                 root.push(category)
+                category.type = 0;
                 return;
             }
 
+            // delete (category.id)
             let parent = data[parentId]
-            delete (category.parentId)
             if (parent == null) { // unparent
                 unParent.push(category)
+                category.type = 1;
                 return;
             }
 
             if (parent.childs == null) {
                 parent.childs = []
             }
-
             category.parent = parent;
             parent.childs.push(category);
         })
@@ -121,33 +110,217 @@ export class Category extends Component {
         )
     }
 
-    materialTable() {
-        let data = [];
-        this.state.category.unParent?.forEach((category, index) => {
-            data.push({ ...category, status: <Label tag>no parent</Label>, action: this.renderAction()})
-        })
+    table() {
+        return (
+            <Table celled selectable>
+                {this.tableHeader(["Name", "Type", "Parent", "Action"])}
+                {this.tableBody()}
+                {this.tableFooter()}
+            </Table>
+        )
+    }
 
-        this.state.category.root?.forEach((category, index) => {
-            data.push({ ...category, status: <Label tag color="red">root</Label>,  action: this.renderAction() })
+    tableHeader(titles) {
+        let header = <Table.Header>
+            <Table.Row>
+                {titles.map(title => <Table.HeaderCell key={title}>{title}</Table.HeaderCell>)}
+            </Table.Row>
+        </Table.Header>
+        return header;
+    }
+
+    renderAction(key) {
+        return (
+            <>
+                <Button icon style={{ fontSize: "12px" }} basic color="teal" onClick={(e) => this.openModalEdit(key)}>
+                    <Icon name='edit' />
+                </Button>
+
+                <Button icon style={{ fontSize: "12px" }} basic color="red" onClick={() => this.showConfirmBox(key)}>
+                    <Icon name='trash alternate' />
+                </Button>
+            </>
+        )
+    }
+
+    tableBody() {
+        let data = []
+        let entries = this.state.category?.map ? Object.entries(this.state.category.map) : [];
+        // console.log(entries)
+        for (const [key, c] of entries) {
+            let parentlist = []
+            let type = "";
+            if (c.type == 0) {
+                type = <Label tag color="red">root</Label>
+            } else if (c.type == 1) {
+                type = <Label tag>no parent</Label>
+            } else {
+                let p = null;
+                p = c.parent
+                while (p != null) {
+                    parentlist.unshift(p.name)
+                    p = p.parent
+                }
+            }
+            data.push(this.tableBodyRow(key, [c.name, type, parentlist.join(","), this.renderAction(key)]))
+        }
+
+        return (
+            <Table.Body>
+                {data}
+            </Table.Body>
+        );
+    }
+
+    tableBodyRow(key, data) {
+        let row = <Table.Row key={key}>
+            {data.map((cell, index) => <Table.Cell key={index}>{cell}</Table.Cell>)}
+        </Table.Row>
+        return row;
+    }
+
+    tableFooter() {
+        return (
+            <Table.Footer>
+                <Table.Row>
+                    <Table.HeaderCell colSpan='4'>
+                        <Pagination floated='right'
+                            siblingRange={1}
+                            boundaryRange={0}
+                            firstItem={null}
+                            lastItem={null}
+                            activePage={this.state.activePage}
+                            // onPageChange={(e, target) => this.handlePaginationChange(e, target)}
+                            totalPages={50}
+
+                        />
+
+                    </Table.HeaderCell>
+                </Table.Row>
+            </Table.Footer>
+        )
+    }
+
+    openModalAdd() {
+        this.setState({
+            openModal: true,
+            updateCategory: {},
         })
-        return <MaterialTable title="Category"
-            columns={[
-                { title: "Category", field: "name" },
-                // { title: "Slug", field: "slug" },
-                { title: "Status", field: "status" },
-                { title: "Parent", field: "parent" },
-                { title: "Action", field: "action" },
-            ]}
-            data={data}
-            icons={tableIcons}
-        />
+    }
+
+    openModalEdit(key) {
+        let c = this.state.category.map[key]
+        this.setState({
+            openModal: true,
+            updateCategory: {
+                ...c,
+                id: key,
+            }
+        })
+    }
+
+    editCategory(category) {
+        category.parent = null;
+        category.childs = null;
+        let handleResult = (data) => {
+            if (data.error < 0) { // fail
+                this.notification("error", data.message)
+            } else { // success
+                this.notification("success", data.message)
+                this.loadCategories();
+            }
+            this.closeModal();
+        }
+
+        if (category.id == null) { // add
+            addCategory(category)
+                .then(data => {
+                    handleResult(data)
+                })
+        } else { // update
+            updateCategory(category, category.id)
+                .then(data => {
+                    // console.log(category, data)
+                    handleResult(data)
+                })
+        }
+    }
+
+
+    deleteCategory(callback) {
+        if (this.state.removeCategoryKey == null) {
+            callback();
+            return;
+        }
+
+        deleteCategory(this.state.removeCategoryKey)
+            .then(data => {
+                if (data.error < 0) {
+                    this.notification("error", data.message)
+                } else {
+                    this.notification("success", data.message)
+                    this.loadCategories();
+                }
+                callback();
+            })
+    }
+
+    closeModal() {
+        this.setState({
+            openModal: false,
+            updateCategory: null,
+        })
+    }
+
+    showConfirmBox(id) {
+        this.setState({
+            removeCategoryKey: id,
+        })
+    }
+
+    closeConfirmBox() {
+        this.setState({
+            removeCategoryKey: null,
+        })
+    }
+
+    notification(type, message) {
+        toast({
+            type: type,
+            description: message,
+            animation: 'bounce',
+            time: 3000,
+            size: "tiny",
+        })
     }
 
     render() {
-        let table = this.materialTable()
+        let table = this.table()
+        let modal = this.state.openModal ? <ModelCategory category={this.state.updateCategory} close={() => this.closeModal()}
+            update={(category) => this.editCategory(category)}
+            root={this.state.category.root}
+            map={this.state.category.map}
+        /> : null
+
+
+        let confirmRemove = this.state.removeCategoryKey ? <Confirm
+            open={true}
+            header='Confirm'
+            content={"Are you sure to remove category: " +
+                this.state.category.map[this.state.removeCategoryKey].name}
+            onCancel={() => this.closeConfirmBox()}
+            onConfirm={() => this.deleteCategory(() => this.closeConfirmBox())}
+        /> : null
         return (
             <div>
+                <Button color="green" basic onClick={() => this.openModalAdd()}>
+                    <Icon name='plus' /> Add new category
+                </Button>
                 {table}
+
+                {modal} {/* modal add or edit */}
+                {confirmRemove} {/* confirm delete */}
+                <SemanticToastContainer position="top-right" />
             </div>
         )
     }
