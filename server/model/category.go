@@ -39,7 +39,7 @@ func GetAllCategoriesV2() (map[string]*entity.Category, int) {
 
 // AddNewCategory func
 func AddNewCategory(c *entity.Category) int {
-	c.ReinitObjectWithMongoDB()
+	c.LoadAncestorObjectID()
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	result, err := mongodb.CategoriesCollection().InsertOne(ctx, c)
@@ -55,6 +55,7 @@ func AddNewCategory(c *entity.Category) int {
 
 // UpdateCategory func
 func UpdateCategory(id string, c *entity.Category) int {
+	c.LoadAncestorObjectID()
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	objectID, err := primitive.ObjectIDFromHex(id)
